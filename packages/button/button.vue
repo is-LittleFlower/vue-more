@@ -1,10 +1,10 @@
 <template>
   <div>
-    <button class="ui primary button" :class="cClass">
+    <button class="ui primary button" @click="hEmitclick" :class="cClass">
       <!-- 设置按钮动画组要进行判断 -->
       <!-- template的用法。它不需要创建新的dom容器，还可以用来包裹其它元素。 -->
       <template v-if="animated">
-        <!-- 用$slots.插槽名来获取指定插槽的内容。
+        <!--$slots可以收集所有插槽 用$slots.插槽名, 来获取指定插槽的内容。
              hidden content 是在semantic-ui中约定的类
              visible conten 是在semantic-ui中约定的类-->
         <div v-if="$slots.hidden" class="hidden content">
@@ -105,6 +105,12 @@ export default {
       // }
       // .join() 是数组方法，将数组转换成一个字符串，并返回一个字符串，用什么隔开，括号内就写什么
       return classArr.join(' ')
+    }
+  },
+  methods: {
+    hEmitclick () {
+      // 在组件内部抛出click事件
+      this.$emit('click')
     }
   },
   data () {
